@@ -826,6 +826,32 @@
     </section>
   </main>
 
+<!-- CDN으로 Supabase 불러오기 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // Supabase 초기화
+  const supabase = supabase.createClient(
+    'https://qtqywjovjupzinuazjcn.supabase.co',  // Project URL
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0cXl3am92anVwemludWF6amNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNTE0NjcsImV4cCI6MjA4OTkyNzQ2N30.WxOyWP-OmZ7dvVLFoiO46CvlkEWJqfbODpnQUwvMy3Y'                        // anon public 키
+  );
+
+  // 댓글 조회
+  const { data } = await supabase
+    .from('comments')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  // 댓글 작성
+  await supabase
+    .from('comments')
+    .insert({ nickname: '홍길동', content: '안녕하세요!' });
+</script>
+
+
+
+
+  
   <footer>
     <div class="container footer-row">
       <div>© 2026 AI Toolbox Hub. All rights reserved.</div>
